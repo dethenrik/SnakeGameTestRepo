@@ -7,6 +7,8 @@
     <uses-sdk
         android:minSdkVersion="24"
         android:targetSdkVersion="35" />
+    <!-- In app/src/main/AndroidManifest.xml, within the <manifest> tag -->
+    <uses-permission android:name="android.permission.INTERNET" />
 
     <permission
         android:name="com.example.snakegame.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION"

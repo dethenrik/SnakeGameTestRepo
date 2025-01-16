@@ -16,7 +16,6 @@ import java.net.URL
 fun AsyncExampleScreen(onBack: () -> Unit) {
     var result by remember { mutableStateOf("No data yet...") }
 
-    // Launch an async call once when entering this screen
     LaunchedEffect(Unit) {
         // Perform an async call to a public API
         result = fetchRandomData()
@@ -33,7 +32,7 @@ fun AsyncExampleScreen(onBack: () -> Unit) {
 }
 
 /**
- * A simple function to fetch random data fro an API
+ * A simple function to fetch random data from an API
  */
 suspend fun fetchRandomData(): String = withContext(Dispatchers.IO) {
     // e.g., fetch a random dog fact

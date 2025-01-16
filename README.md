@@ -1,6 +1,10 @@
 # SnakeGameTestRepo
 Welcome to SnakeGameTestRepo! This is a simple Snake game built with Jetpack Compose in Kotlin for Android. The project demonstrates menus, game logic, persistent data storage, asynchronous calls, and more.
 
+
+Async access through public api call insert into you androidmanifest.xml “<uses-permission android:name="android.permission.INTERNET" />” within the manifest tag ie. line 4. 
+Path - Project(view)>SnakeGame>app>src>main>AndroidManifest,xml
+
 ## Table of Contents
 - Overview
 - Features

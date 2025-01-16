@@ -41,8 +41,7 @@ class GameViewModel(private val sharedPrefs: SharedPreferences) : ViewModel() {
 
             // Basic game loop
             while (!_isGameOver.value) {
-                delay(300) // slow down snake movement
-
+                delay(300)
                 moveSnake()
                 checkCollision()
             }
@@ -61,8 +60,9 @@ class GameViewModel(private val sharedPrefs: SharedPreferences) : ViewModel() {
             Direction.RIGHT -> head.copy(x = head.x + 1)
         }
 
+        // Move forward
         val newBody = mutableListOf<Position>(newHead)
-        newBody.addAll(currentSnake.dropLast(1)) // move forward
+        newBody.addAll(currentSnake.dropLast(1))
         _snakeBody.value = newBody
     }
 
@@ -75,18 +75,16 @@ class GameViewModel(private val sharedPrefs: SharedPreferences) : ViewModel() {
             _isGameOver.value = true
             return
         }
-
         // Check self collision
         if (currentSnake.drop(1).contains(head)) {
             _isGameOver.value = true
             return
         }
-
         // Check food collision
         val currentFood = _foodPosition.value
         if (currentFood != null && head == currentFood) {
             _score.update { it + 1 }
-            // grow snake
+            // Grow snake
             val newBody = _snakeBody.value.toMutableList()
             newBody.add(currentFood) // add new segment at tail
             _snakeBody.value = newBody
@@ -101,10 +99,15 @@ class GameViewModel(private val sharedPrefs: SharedPreferences) : ViewModel() {
     }
 
     fun saveHighScore(newScore: Int) {
-        // Retrieve existing high score
         val highScore = sharedPrefs.getInt("HIGH_SCORE", 0)
         if (newScore > highScore) {
             sharedPrefs.edit().putInt("HIGH_SCORE", newScore).apply()
         }
     }
+
+    // NEW direction helper methods
+    fun changeDirectionToUp() { direction = Direction.UP }
+    fun changeDirectionToDown() { direction = Direction.DOWN }
+    fun changeDirectionToLeft() { direction = Direction.LEFT }
+    fun changeDirectionToRight() { direction = Direction.RIGHT }
 }

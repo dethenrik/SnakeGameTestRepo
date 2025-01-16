@@ -14,7 +14,8 @@ import androidx.compose.ui.unit.dp
 fun MenuScreen(
     onStartGame: () -> Unit,
     onViewHighScores: () -> Unit,
-    onAsyncExample: () -> Unit
+    onAsyncExample: () -> Unit,
+    onSettings: () -> Unit  // <-- NEW
 ) {
     Column(
         modifier = Modifier
@@ -23,6 +24,7 @@ fun MenuScreen(
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
         Text(text = "Welcome to Snake!", modifier = Modifier.padding(16.dp))
+
         Button(onClick = onStartGame, modifier = Modifier.padding(8.dp)) {
             Text("Start Game")
         }
@@ -31,6 +33,11 @@ fun MenuScreen(
         }
         Button(onClick = onAsyncExample, modifier = Modifier.padding(8.dp)) {
             Text("Async Example")
+        }
+
+        // NEW: Button to go to Settings
+        Button(onClick = onSettings, modifier = Modifier.padding(8.dp)) {
+            Text("Settings")
         }
     }
 }
